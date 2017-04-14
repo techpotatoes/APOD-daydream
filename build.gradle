@@ -32,4 +32,6 @@ ext {
     constraint_layout_version = '1.0.0-beta4'
 
     glide_version = '3.7.0'
+
+    butter_knife_version = '8.5.1'
 }
