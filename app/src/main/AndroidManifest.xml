@@ -15,6 +15,7 @@
     <application
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/AppTheme"
         tools:ignore="MissingTvBanner">
 
         <activity
@@ -25,13 +26,11 @@
             </intent-filter>
         </activity>
 
-
         <service
             android:name="com.lbbento.daydreamnasa.MainDaydreamServiceView"
             android:exported="true"
             android:label="@string/app_name"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.Leanback"
             android:permission="android.permission.BIND_DREAM_SERVICE">
             <intent-filter>
                 <action android:name="android.service.dreams.DreamService" />
