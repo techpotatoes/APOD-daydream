@@ -7,14 +7,16 @@ import butterknife.ButterKnife
 import com.lbbento.daydreamnasa.daydreamnasa.R
 import com.lbbento.daydreamnasa.view.BaseServiceView
 
-class MainDaydreamServiceView : BaseServiceView<MainDaydreamServiceViewPresenter>(::MainDaydreamServiceViewPresenter), MainDayDreamServiceViewContract {
+class MainDaydreamServiceView : BaseServiceView(), MainDayDreamServiceViewContract {
 
-    @BindView(R.id.main_dreamservice_view_wallImg)
+    private val presenter = MainDaydreamServiceViewPresenter()
+
+    @BindView(R.id.main_dreamserviceview_wallImg)
     lateinit var wallImage : ImageView
 
-    override fun onDreamingStarted() {
-        super.onDreamingStarted()
-        presenter.onDreamingStarted()
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        presenter.onAttachedToWindow(this)
     }
 
     override fun setScreenContent() {
