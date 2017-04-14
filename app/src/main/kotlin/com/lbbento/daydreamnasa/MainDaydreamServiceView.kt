@@ -1,15 +1,20 @@
 package com.lbbento.daydreamnasa
 
-import android.service.dreams.DreamService
+import android.view.View
+import android.widget.ImageView
+import butterknife.BindView
+import butterknife.ButterKnife
 import com.lbbento.daydreamnasa.daydreamnasa.R
+import com.lbbento.daydreamnasa.view.BaseServiceView
 
-class MainDaydreamServiceView : DreamService(), MainDayDreamServiceViewContract {
+class MainDaydreamServiceView : BaseServiceView<MainDaydreamServiceViewPresenter>(::MainDaydreamServiceViewPresenter), MainDayDreamServiceViewContract {
 
-    val mainDaydreamServiceViewPresenter = MainDaydreamServiceViewPresenter(this)
+    @BindView(R.id.main_dreamservice_view_wallImg)
+    lateinit var wallImage : ImageView
 
     override fun onDreamingStarted() {
         super.onDreamingStarted()
-        mainDaydreamServiceViewPresenter.onDreamingStarted()
+        presenter.onDreamingStarted()
     }
 
     override fun setScreenContent() {
@@ -17,8 +22,8 @@ class MainDaydreamServiceView : DreamService(), MainDayDreamServiceViewContract 
         isInteractive = true
         isScreenBright = false
 
-        println("Im here")
-        setContentView(R.layout.activity_main)
+        val view = View.inflate(applicationContext, R.layout.main_dreamservice_view, null)
+        ButterKnife.bind(this, view)
+        setContentView(view)
     }
-
 }

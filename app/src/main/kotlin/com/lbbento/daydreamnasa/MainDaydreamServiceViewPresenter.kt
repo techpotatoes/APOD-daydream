@@ -1,9 +1,14 @@
 package com.lbbento.daydreamnasa
 
-class MainDaydreamServiceViewPresenter(var view: MainDayDreamServiceViewContract) {
+import com.lbbento.daydreamnasa.presenter.BasePresenter
+import com.lbbento.daydreamnasa.view.ImageLoader
+
+class MainDaydreamServiceViewPresenter : BasePresenter<MainDayDreamServiceViewContract>() {
+
+    lateinit var imageLoader : ImageLoader
 
     fun onDreamingStarted() {
-        view.setScreenContent()
+        mView.setScreenContent()
     }
-    
+
 }

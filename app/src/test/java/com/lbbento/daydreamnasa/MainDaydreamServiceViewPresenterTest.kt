@@ -15,7 +15,7 @@ class MainDaydreamServiceViewPresenterTest {
     @Test
     @Throws(Exception::class)
     fun shouldSetupAndLoadContentOnDreamingStarted() {
-        val mainDaydreamServiceViewPresenter = MainDaydreamServiceViewPresenter(view)
+        val mainDaydreamServiceViewPresenter = MainDaydreamServiceViewPresenter()
 
         mainDaydreamServiceViewPresenter.onDreamingStarted()
 

@@ -1,7 +1,8 @@
 package com.lbbento.daydreamnasa
 
-import com.lbbento.daydreamnasa.view.BaseView
+import com.lbbento.daydreamnasa.view.BaseViewContract
 
-interface MainDayDreamServiceViewContract : BaseView{
+interface MainDayDreamServiceViewContract : BaseViewContract
+{
     fun setScreenContent()
 }
