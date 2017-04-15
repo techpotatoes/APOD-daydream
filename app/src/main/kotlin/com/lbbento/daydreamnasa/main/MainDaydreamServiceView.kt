@@ -1,9 +1,10 @@
-package com.lbbento.daydreamnasa
+package com.lbbento.daydreamnasa.main
 
 import android.view.View
 import android.widget.ImageView
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.lbbento.daydreamnasa.MainApplication
 import com.lbbento.daydreamnasa.daydreamnasa.R
 import com.lbbento.daydreamnasa.view.BaseServiceView
 import javax.inject.Inject
@@ -11,7 +12,7 @@ import javax.inject.Inject
 class MainDaydreamServiceView : BaseServiceView(), MainDayDreamServiceViewContract {
 
     @Inject
-    lateinit var presenter : MainDaydreamServiceViewPresenter
+    lateinit var presenter : MainDaydreamServiceViewServicePresenter
 
     @BindView(R.id.main_dreamserviceview_wallImg)
     lateinit var wallImage : ImageView

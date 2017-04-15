@@ -1,7 +1,7 @@
 package com.lbbento.daydreamnasa.di
 
 import com.lbbento.daydreamnasa.MainApplication
-import com.lbbento.daydreamnasa.MainDaydreamServiceView
+import com.lbbento.daydreamnasa.main.MainDaydreamServiceView
 import dagger.Component
 import javax.inject.Singleton
 

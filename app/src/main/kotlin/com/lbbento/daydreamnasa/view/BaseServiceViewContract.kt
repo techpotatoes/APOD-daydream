@@ -1,5 +1,5 @@
 package com.lbbento.daydreamnasa.view
 
-interface BaseViewContract {
+interface BaseServiceViewContract {
     fun setScreenContent()
 }
