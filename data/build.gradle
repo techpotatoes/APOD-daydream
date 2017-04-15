@@ -1,23 +1,31 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+
     defaultConfig {
-        applicationId "com.lbbento.daydreamnasa.daydreamnasa"
         minSdkVersion 21
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-    }
 
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        all {
+            Properties properties = new Properties()
+            properties.load(project.file('../build.properties').newDataInputStream())
+
+            buildConfigField "String", "API_ENDPOINT", properties.getProperty('nasa_api_server')
+            buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
         }
     }
 
@@ -25,18 +33,13 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
-        disable "ResourceType"
+    kapt {
+        generateStubs = true
     }
 }
 
-kapt {
-    generateStubs = true
-}
-
 dependencies {
-    compile project(':data')
-
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile("com.android.support.test.espresso:espresso-core:$tests_espresso_version", {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -46,17 +49,11 @@ dependencies {
 
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "com.android.support:leanback-v17:$support_library_version"
-    compile "com.android.support:appcompat-v7:$support_library_version"
-    compile "com.android.support.constraint:constraint-layout:$constraint_layout_version"
-
-    //Glide
-    compile "com.github.bumptech.glide:glide:$glide_version"
-
-    //Butterknife
-    compile "com.jakewharton:butterknife:$butter_knife_version"
-    kapt "com.jakewharton:butterknife-compiler:$butter_knife_version"
-
     //RxKotlin
     compile group: 'io.reactivex', name: 'rxkotlin', version: rx_kotlin
+
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
 }
