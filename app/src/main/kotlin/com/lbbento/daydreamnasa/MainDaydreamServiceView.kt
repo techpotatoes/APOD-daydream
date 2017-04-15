@@ -6,10 +6,12 @@ import butterknife.BindView
 import butterknife.ButterKnife
 import com.lbbento.daydreamnasa.daydreamnasa.R
 import com.lbbento.daydreamnasa.view.BaseServiceView
+import javax.inject.Inject
 
 class MainDaydreamServiceView : BaseServiceView(), MainDayDreamServiceViewContract {
 
-    private val presenter = MainDaydreamServiceViewPresenter()
+    @Inject
+    lateinit var presenter : MainDaydreamServiceViewPresenter
 
     @BindView(R.id.main_dreamserviceview_wallImg)
     lateinit var wallImage : ImageView
@@ -28,4 +30,9 @@ class MainDaydreamServiceView : BaseServiceView(), MainDayDreamServiceViewContra
         ButterKnife.bind(this, view)
         setContentView(view)
     }
+
+    override fun setupInjection() {
+        (application as MainApplication).component.inject(this)
+    }
+
 }

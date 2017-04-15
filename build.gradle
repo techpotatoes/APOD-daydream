@@ -38,4 +38,6 @@ ext {
     retrofit_version = '2.2.0'
 
     rx_kotlin = '2.0.0-RC1'
+
+    dagger_version = '2.10'
 }

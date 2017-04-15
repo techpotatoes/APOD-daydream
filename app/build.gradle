@@ -59,4 +59,7 @@ dependencies {
 
     //RxKotlin
     compile group: 'io.reactivex', name: 'rxkotlin', version: rx_kotlin
+
+    compile "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }
