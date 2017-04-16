@@ -1,0 +1,18 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(date 1492003701000)
++++ app/src/main/res/layout/activity_main.xml	(revision )
+@@ -3,8 +3,8 @@
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent"
+-    tools:context="com.lbbento.daydreamnasa.daydreamnasa.com.lbbento.daydreamnasa.MainActivity">
++    android:background="@drawable/testing"
++    android:layout_height="match_parent">
+ 
+     <TextView
+         android:layout_width="wrap_content"

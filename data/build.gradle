@@ -24,7 +24,6 @@ android {
             Properties properties = new Properties()
             properties.load(project.file('../build.properties').newDataInputStream())
 
-            buildConfigField "String", "API_ENDPOINT", properties.getProperty('nasa_api_server')
             buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
         }
     }
@@ -56,4 +55,8 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
     compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
     compile "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
+
+    //Dagger2
+    compile "com.google.dagger:dagger:$dagger_version"
+    kapt "com.google.dagger:dagger-compiler:$dagger_version"
 }

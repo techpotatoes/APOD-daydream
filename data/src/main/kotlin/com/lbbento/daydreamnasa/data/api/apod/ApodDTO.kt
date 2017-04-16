@@ -1,4 +1,4 @@
-package com.lbbento.daydreamnasa.data.provider.apod
+package com.lbbento.daydreamnasa.data.api.apod
 
 import java.util.*
 

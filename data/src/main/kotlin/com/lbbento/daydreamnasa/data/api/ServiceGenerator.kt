@@ -8,25 +8,25 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class ServiceGenerator {
 
-    val API_BASE_URL = "https://api.forecast.io/"
+    companion object Static {
+        val API_BASE_URL = "https://api.nasa.gov/planetary/apod"
 
-    private val gson = GsonBuilder().create()
+        private val gson = GsonBuilder().create()
 
-    private val builder = Retrofit.Builder()
-            .baseUrl(API_BASE_URL)
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create(gson))
+        private val builder = Retrofit.Builder()
+                .baseUrl(API_BASE_URL)
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
 
-    fun <S> createService(serviceClass: Class<S>): S {
+        fun <S> createService(serviceClass: Class<S>): S {
 
-        val httpClient = OkHttpClient.Builder()
-        val client: OkHttpClient
+            val httpClient = OkHttpClient.Builder()
+            val client = httpClient.build()
 
-        client = httpClient.build()
+            val retrofit = builder.client(client).build()
 
-        val retrofit = builder.client(client).build()
-
-        return retrofit.create(serviceClass)
+            return retrofit.create(serviceClass)
+        }
     }
 
 
