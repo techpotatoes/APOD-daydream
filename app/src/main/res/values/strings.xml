@@ -3,4 +3,5 @@
 
     <string name="dreamservice_package_context">com.android.systemui</string>
     <string name="dreamservice_class_name">com.android.systemui.Somnambulator</string>
+    <string name="loading_error_message">An error has occured when trying to load image.</string>
 </resources>

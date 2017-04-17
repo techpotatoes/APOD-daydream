@@ -1,5 +1,6 @@
 package com.lbbento.daydreamnasa.data.api
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -9,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class ServiceGenerator {
 
     companion object Static {
-        val API_BASE_URL = "https://api.nasa.gov/planetary/apod"
+        val API_BASE_URL = "https://api.nasa.gov/"
 
         private val gson = GsonBuilder().create()
 
@@ -20,8 +21,9 @@ class ServiceGenerator {
 
         fun <S> createService(serviceClass: Class<S>): S {
 
-            val httpClient = OkHttpClient.Builder()
-            val client = httpClient.build()
+            val client = OkHttpClient.Builder()
+                    .addNetworkInterceptor(StethoInterceptor())
+                    .build()
 
             val retrofit = builder.client(client).build()
 

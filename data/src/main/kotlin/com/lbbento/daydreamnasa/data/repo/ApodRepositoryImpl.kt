@@ -13,9 +13,9 @@ class ApodRepositoryImpl @Inject constructor(val remoteRepoSource : ApodRemoteRe
         return localRepoSource.getApod()
                 .flatMap { apodDTO ->
                     if (apodDTO != null) {
-                        Observable.just(apodDTO)
+                        return@flatMap Observable.just(apodDTO)
                     } else {
-                        remoteRepoSource.getApod().doOnNext { apodRemote -> localRepoSource.setApod(apodRemote)}
+                        return@flatMap remoteRepoSource.getApod().doOnNext { apodRemote -> localRepoSource.setApod(apodRemote)}
                     }
                 }
     }
