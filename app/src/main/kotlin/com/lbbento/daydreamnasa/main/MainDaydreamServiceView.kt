@@ -55,7 +55,13 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     }
     override fun loadContent(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
         Log.d("LUCAS", mainDaydreamServiceViewModel.imageUrl)
-        Glide.with(this).load(mainDaydreamServiceViewModel.imageUrl).into(wallImage)
+        Glide
+                .with(this)
+                .load(mainDaydreamServiceViewModel.imageUrl)
+                .placeholder(R.drawable.earth)
+                .fallback(R.drawable.earth)
+                .animate(R.anim.abc_fade_in)
+                .into(wallImage)
     }
 
 }

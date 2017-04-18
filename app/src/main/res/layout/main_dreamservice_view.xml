@@ -7,6 +7,7 @@
     <ImageView
         android:id="@+id/main_dreamserviceview_wallImg"
         android:scaleType="fitXY"
+        android:src="@drawable/earth"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
