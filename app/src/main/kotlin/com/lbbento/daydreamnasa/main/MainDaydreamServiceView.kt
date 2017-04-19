@@ -3,6 +3,7 @@ package com.lbbento.daydreamnasa.main
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -19,6 +20,12 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
 
     @BindView(R.id.main_dreamserviceview_wallImg)
     lateinit var wallImage : ImageView
+
+    @BindView(R.id.main_dreamserviceview_title)
+    lateinit var textTitle : TextView
+
+    @BindView(R.id.main_dreamserviceview_description)
+    lateinit var textDescription : TextView
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -55,6 +62,7 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     }
     override fun loadContent(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
         Log.d("LUCAS", mainDaydreamServiceViewModel.imageUrl)
+
         Glide
                 .with(this)
                 .load(mainDaydreamServiceViewModel.imageUrl)
@@ -62,6 +70,9 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
                 .fallback(R.drawable.earth)
                 .animate(R.anim.abc_fade_in)
                 .into(wallImage)
+
+        textTitle.text = mainDaydreamServiceViewModel.title
+        textDescription.text = mainDaydreamServiceViewModel.description
     }
 
 }

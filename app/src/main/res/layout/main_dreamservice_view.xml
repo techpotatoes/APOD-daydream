@@ -11,13 +11,77 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000000"
+        android:alpha="0.1"/>
+
+    <LinearLayout
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="30dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-        android:text="@string/app_name"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="5"
+        android:padding="20dp"
+        android:background="#20000000">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4">
+
+            <TextView
+                android:id="@+id/main_dreamserviceview_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:text="@string/main_dreamservice_view_title"/>
+
+            <TextView
+                android:id="@+id/main_dreamserviceview_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="10"
+                android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:text="@string/main_dreamservice_view_description"/>
+
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.widget.TextClock
+                    android:id="@+id/main_dreamserviceview_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:format24Hour="@null"
+                    android:format12Hour="k:mm"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:layout_below="@+id/main_dreamserviceview_time"
+                    android:text="@string/main_dreamservice_view_by_nasa"/>
+            </RelativeLayout>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+
 
 </RelativeLayout>
