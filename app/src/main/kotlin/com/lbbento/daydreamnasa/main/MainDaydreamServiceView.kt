@@ -2,15 +2,19 @@ package com.lbbento.daydreamnasa.main
 
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.GlideDrawable
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
+import com.flaviofaria.kenburnsview.KenBurnsView
 import com.lbbento.daydreamnasa.MainApplication
 import com.lbbento.daydreamnasa.daydreamnasa.R
 import com.lbbento.daydreamnasa.view.BaseServiceView
+import java.lang.Exception
 import javax.inject.Inject
 
 class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContract {
@@ -19,7 +23,7 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     lateinit var presenter : MainDaydreamServiceViewPresenter
 
     @BindView(R.id.main_dreamserviceview_wallImg)
-    lateinit var wallImage : ImageView
+    lateinit var wallImage : KenBurnsView
 
     @BindView(R.id.main_dreamserviceview_title)
     lateinit var textTitle : TextView
@@ -69,10 +73,24 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
                 .placeholder(R.drawable.earth)
                 .fallback(R.drawable.earth)
                 .animate(R.anim.abc_fade_in)
+                .listener(GlideRequestListener(wallImage))
                 .into(wallImage)
 
         textTitle.text = mainDaydreamServiceViewModel.title
         textDescription.text = mainDaydreamServiceViewModel.description
     }
 
+    private class GlideRequestListener(val wallImage: KenBurnsView) : RequestListener<String, GlideDrawable> {
+
+        override fun onResourceReady(resource: GlideDrawable?, model: String?, target: Target<GlideDrawable>?, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean {
+            wallImage.resume()
+            return false
+        }
+
+        override fun onException(e: Exception?, model: String?, target: Target<GlideDrawable>?, isFirstResource: Boolean): Boolean {
+            wallImage.pause()
+            return false
+        }
+
+    }
 }

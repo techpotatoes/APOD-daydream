@@ -4,12 +4,12 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent">
 
-    <ImageView
+    <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/main_dreamserviceview_wallImg"
-        android:scaleType="fitXY"
-        android:src="@drawable/earth"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/earth" />
 
     <View
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="5"
+        android:weightSum="6"
         android:padding="20dp"
         android:background="#20000000">
 
@@ -54,7 +54,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_weight="1">
+            android:layout_weight="2">
 
             <RelativeLayout
                 android:layout_width="match_parent"
