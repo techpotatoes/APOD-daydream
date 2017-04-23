@@ -1,7 +1,13 @@
 package com.lbbento.daydreamnasa.main
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
+import android.net.Uri
 import android.util.Log
+import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
@@ -14,8 +20,8 @@ import com.flaviofaria.kenburnsview.KenBurnsView
 import com.lbbento.daydreamnasa.MainApplication
 import com.lbbento.daydreamnasa.daydreamnasa.R
 import com.lbbento.daydreamnasa.view.BaseServiceView
-import java.lang.Exception
 import javax.inject.Inject
+
 
 class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContract {
 
@@ -30,6 +36,9 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
 
     @BindView(R.id.main_dreamserviceview_description)
     lateinit var textDescription : TextView
+
+    @BindView(R.id.main_dreamserviceview_container)
+    lateinit var container : ViewGroup
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -55,15 +64,11 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
         presenter.onDreamingStarted()
     }
 
-    override fun showLoading() {
-        //TODO - show small spinner
+    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
+        presenter.onDispatchKeyEvent(event)
+        return super.dispatchKeyEvent(event)
     }
-    override fun hideLoading() {
-        //TODO - hide spinner
-    }
-    override fun showError() {
-        Toast.makeText(this, R.string.loading_error_message, Toast.LENGTH_SHORT).show()
-    }
+
     override fun loadContent(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
         Log.d("LUCAS", mainDaydreamServiceViewModel.imageUrl)
 
@@ -78,6 +83,30 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
 
         textTitle.text = mainDaydreamServiceViewModel.title
         textDescription.text = mainDaydreamServiceViewModel.description
+    }
+
+    override fun showLoadingError() {
+        Toast.makeText(this, R.string.main_dreamservice_view_loading_error_message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun showError() {
+        Toast.makeText(this, R.string.main_dreamservice_view_error, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun openYoutubeVideo(videoUrl: String) {
+        presenter.onOpenYoutubeVideo(videoUrl)
+    }
+
+    @Throws(ActivityNotFoundException::class)
+    override fun openExplictIntentVideo(explictIntentUri: Uri?) {
+        startActivity(Intent(Intent.ACTION_VIEW, explictIntentUri).addFlags(FLAG_ACTIVITY_NEW_TASK))
+        finish()
+    }
+
+    @Throws(Exception::class)
+    override fun openImplictIntentVideo(imageUri: Uri?) {
+        startActivity(Intent(Intent.ACTION_VIEW, imageUri).addFlags(FLAG_ACTIVITY_NEW_TASK))
+        finish()
     }
 
     private class GlideRequestListener(val wallImage: KenBurnsView) : RequestListener<String, GlideDrawable> {

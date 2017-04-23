@@ -3,9 +3,10 @@
 
     <string name="dreamservice_package_context">com.android.systemui</string>
     <string name="dreamservice_class_name">com.android.systemui.Somnambulator</string>
-    <string name="loading_error_message">An error has occurred when trying to load image.</string>
 
+    <string name="main_dreamservice_view_loading_error_message">An error has occurred when trying to load image.</string>
     <string name="main_dreamservice_view_title">Astronomy picture of the day</string>
     <string name="main_dreamservice_view_description">A different astronomy and space science related image is featured each day, along with a brief explanation.</string>
     <string name="main_dreamservice_view_by_nasa">Photo by NASA Apod</string>
+    <string name="main_dreamservice_view_error">An error has occurred. Please try again. </string>
 </resources>
