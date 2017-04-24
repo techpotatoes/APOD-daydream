@@ -17,13 +17,18 @@ android {
 
     buildTypes {
         release {
+            Properties properties = new Properties()
+            properties.load(project.file('../build.properties').newDataInputStream())
+
+            buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
+
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        all {
+        debug {
             Properties properties = new Properties()
-            properties.load(project.file('../build.properties').newDataInputStream())
+            properties.load(project.file('../local.properties').newDataInputStream())
 
             buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
         }
@@ -35,6 +40,12 @@ android {
 
     kapt {
         generateStubs = true
+    }
+
+    android {
+        lintOptions {
+            abortOnError false
+        }
     }
 }
 
