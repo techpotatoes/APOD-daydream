@@ -14,3 +14,7 @@ branches:
                 - master
 jdk:
   - oraclejdk8
+licenses:
+          - 'android-sdk-preview-license-.+'
+          - 'android-sdk-license-.+'
+          - 'google-gdk-license-.+'
