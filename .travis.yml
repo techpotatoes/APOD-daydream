@@ -12,3 +12,5 @@ before_install:
 branches:
         only:
                 - master
+jdk:
+  - oraclejdk8
