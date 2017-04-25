@@ -29,7 +29,6 @@ ext {
     tests_mockito_version = '2.7.22'
 
     support_library_version = '25.3.1'
-    constraint_layout_version = '1.0.0-beta4'
 
     glide_version = '3.7.0'
 
