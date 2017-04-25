@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    publishNonDefault true
 
     defaultConfig {
         minSdkVersion 21
@@ -17,18 +18,24 @@ android {
 
     buildTypes {
         release {
-            Properties properties = new Properties()
-            properties.load(project.file('../build.properties').newDataInputStream())
-
-            buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
-
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            def propFilename = "../local.properties"
+            def file = new File(propFilename)
+            if (file.exists()) {
+                Properties properties = new Properties()
+                properties.load(project.file(propFilename).newDataInputStream())
+
+                buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
+            }else {
+                buildConfigField "String", "API_KEY", '"no_key_defined"'
+            }
         }
 
         debug {
             Properties properties = new Properties()
-            properties.load(project.file('../local.properties').newDataInputStream())
+            properties.load(project.file("../build.properties").newDataInputStream())
 
             buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
         }
