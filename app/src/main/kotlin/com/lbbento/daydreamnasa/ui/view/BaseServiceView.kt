@@ -1,4 +1,4 @@
-package com.lbbento.daydreamnasa.view
+package com.lbbento.daydreamnasa.ui.view
 
 import android.net.Uri
 import android.service.dreams.DreamService

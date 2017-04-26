@@ -1,6 +1,6 @@
-package com.lbbento.daydreamnasa.presenter
+package com.lbbento.daydreamnasa.ui.presenter
 
-import com.lbbento.daydreamnasa.view.BaseServiceViewContract
+import com.lbbento.daydreamnasa.ui.view.BaseServiceViewContract
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -18,7 +18,7 @@ class BaseServicePresenterTest {
 
         basePresenter.onAttachedToWindow(mockedView)
 
-        verify(mockedView).setScreenContent()
+        verify(mockedView).setupScreen()
         assertEquals(basePresenter.mView, mockedView)
     }
 

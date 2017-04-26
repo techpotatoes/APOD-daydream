@@ -1,8 +1,8 @@
-package com.lbbento.daydreamnasa.view
+package com.lbbento.daydreamnasa.ui.view
 
 import android.net.Uri
 
 interface BaseServiceViewContract {
-    fun setScreenContent()
+    fun setupScreen()
     fun parseUri(uriToParse: String) : Uri
 }

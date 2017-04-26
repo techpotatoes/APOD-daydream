@@ -1,6 +1,6 @@
-package com.lbbento.daydreamnasa.presenter
+package com.lbbento.daydreamnasa.ui.presenter
 
-import com.lbbento.daydreamnasa.view.BaseServiceViewContract
+import com.lbbento.daydreamnasa.ui.view.BaseServiceViewContract
 
 
 abstract class BaseServicePresenter<V : BaseServiceViewContract> : BaseServicePresenterContract<V> {
@@ -9,6 +9,6 @@ abstract class BaseServicePresenter<V : BaseServiceViewContract> : BaseServicePr
 
     override fun onAttachedToWindow(view: V) {
             this.mView = view
-            mView.setScreenContent()
+            mView.setupScreen()
     }
 }
