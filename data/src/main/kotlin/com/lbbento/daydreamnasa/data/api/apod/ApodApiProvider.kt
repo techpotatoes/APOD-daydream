@@ -8,6 +8,6 @@ import rx.Observable
 interface ApodApiProvider {
 
     @GET("planetary/apod")
-    fun getApod(@Query("api_key") apiKey: String = BuildConfig.API_KEY): Observable<ApodDTO>
+    fun getApod(@Query("api_key") apiKey: String = BuildConfig.NASA_API_KEY): Observable<ApodDTO>
 
 }

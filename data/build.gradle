@@ -1,10 +1,11 @@
+import com.android.build.gradle.internal.dsl.CoreBuildType
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
-    publishNonDefault true
 
     defaultConfig {
         minSdkVersion 21
@@ -20,25 +21,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
-            def propFilename = "../local.properties"
-            def file = new File(propFilename)
-            if (file.exists()) {
-                Properties properties = new Properties()
-                properties.load(project.file(propFilename).newDataInputStream())
-
-                buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
-            }else {
-                buildConfigField "String", "API_KEY", '"no_key_defined"'
-            }
         }
-
-        debug {
-            Properties properties = new Properties()
-            properties.load(project.file("../build.properties").newDataInputStream())
-
-            buildConfigField "String", "API_KEY", properties.getProperty('nasa_api_key')
-        }
+        loadProperties debug, 'build.properties'
+        loadProperties release, 'release.properties'
     }
 
     sourceSets {
@@ -82,4 +67,20 @@ dependencies {
     //Stetho
     compile "com.facebook.stetho:stetho:$stetho_version"
     compile "com.facebook.stetho:stetho-okhttp3:$stetho_version"
+}
+
+def loadProperties(CoreBuildType buildtype,  String propertyFile) {
+    def propsFile = rootProject.file(propertyFile)
+    if (propsFile.exists()) {
+        def props = new Properties()
+        props.load(new FileInputStream(propsFile))
+        props.entrySet().each {
+            //noinspection GroovyAssignabilityCheck
+            buildtype.buildConfigField "String", it.key.toString().toUpperCase().replace('.', '_'),
+                    "${it.value.toString()}"
+        }
+    } else {
+        buildtype.buildConfigField "String", it.key.toString().toUpperCase().replace('.', '_'),
+                "\"Api key not defined\""
+    }
 }
