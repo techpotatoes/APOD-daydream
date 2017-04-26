@@ -66,7 +66,7 @@ class MainDaydreamServiceViewPresenterTest {
     }
 
     @Test
-    fun shouldLoadImageAndDataWhenRetrievingDataOnDreamingStartedSucceeds() {
+    fun shouldLoadImageWhenRetrievingDataOnDreamingStartedSucceeds() {
         val mainDreamServiceViewModel = MainDaydreamServiceViewModel(imageUrl = "url", title = "title", description = "My description", originalUrl = "url")
 
         `when`(apodRepository.getApod()).thenReturn(Observable.just(APOD_DTO))
@@ -76,7 +76,25 @@ class MainDaydreamServiceViewPresenterTest {
         mainDaydreamServiceViewPresenter.onDreamingStarted()
 
         verify(apodRepository).getApod()
-        verify(mainDaydreamServiceView).loadContent(mainDreamServiceViewModel)
+        verify(mainDaydreamServiceView).loadImage("url")
+    }
+
+    @Test
+    fun shouldLoadDataOnApodImageReady() {
+        val mainDreamServiceViewModel = MainDaydreamServiceViewModel(imageUrl = "url", title = "title", description = "My description", originalUrl = "url")
+        mainDaydreamServiceViewPresenter.mainDaydreamServiceViewModelState = mainDreamServiceViewModel
+
+        mainDaydreamServiceViewPresenter.onApodImageReady()
+
+        verify(mainDaydreamServiceView).loadTitle("title")
+        verify(mainDaydreamServiceView).loadDescription("My description")
+    }
+
+    @Test
+    fun shouldShowErrorOnApodImageException() {
+        mainDaydreamServiceViewPresenter.onApodImageException()
+
+        verify(mainDaydreamServiceView).showError()
     }
 
     @Test
@@ -137,5 +155,4 @@ class MainDaydreamServiceViewPresenterTest {
         verify(mainDaydreamServiceView).openExplictIntentVideo(ArgumentMatchers.any())
         verify(mainDaydreamServiceView).openImplictIntentVideo(expectedUri)
     }
-
 }

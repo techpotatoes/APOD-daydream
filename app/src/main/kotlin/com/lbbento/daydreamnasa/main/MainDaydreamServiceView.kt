@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.net.Uri
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
@@ -12,14 +11,11 @@ import android.widget.TextView
 import android.widget.Toast
 import butterknife.BindView
 import butterknife.ButterKnife
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.drawable.GlideDrawable
-import com.bumptech.glide.request.RequestListener
-import com.bumptech.glide.request.target.Target
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.lbbento.daydreamnasa.MainApplication
 import com.lbbento.daydreamnasa.daydreamnasa.R
-import com.lbbento.daydreamnasa.view.BaseServiceView
+import com.lbbento.daydreamnasa.ui.glide.ApodImageLoader
+import com.lbbento.daydreamnasa.ui.view.BaseServiceView
 import javax.inject.Inject
 
 
@@ -27,6 +23,8 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
 
     @Inject
     lateinit var presenter : MainDaydreamServiceViewPresenter
+
+    lateinit var apodImageLoader: ApodImageLoader
 
     @BindView(R.id.main_dreamserviceview_wallImg)
     lateinit var wallImage : KenBurnsView
@@ -40,12 +38,27 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     @BindView(R.id.main_dreamserviceview_container)
     lateinit var container : ViewGroup
 
+    override fun setupInjection() {
+        (application as MainApplication).component.inject(this)
+    }
+
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         presenter.onAttachedToWindow(this)
     }
 
-    override fun setScreenContent() {
+    override fun onDreamingStarted() {
+        super.onDreamingStarted()
+        apodImageLoader = ApodImageLoader(this)
+        presenter.onDreamingStarted()
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
+        presenter.onDispatchKeyEvent(event)
+        return super.dispatchKeyEvent(event)
+    }
+
+    override fun setupScreen() {
         isFullscreen = true
         isInteractive = true
         isScreenBright = false
@@ -55,36 +68,17 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
         setContentView(view)
     }
 
-    override fun setupInjection() {
-        (application as MainApplication).component.inject(this)
+    override fun loadImage(imageUrl: String) {
+        apodImageLoader.loadApodImage(wallImage, imageUrl)
     }
 
-    override fun onDreamingStarted() {
-        super.onDreamingStarted()
-        presenter.onDreamingStarted()
+    override fun loadTitle(title: String) {
+        textTitle.text = title
     }
 
-    override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
-        presenter.onDispatchKeyEvent(event)
-        return super.dispatchKeyEvent(event)
+    override fun loadDescription(description: String) {
+        textDescription.text = description
     }
-
-    override fun loadContent(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
-        Log.d("LUCAS", mainDaydreamServiceViewModel.imageUrl)
-
-        Glide
-                .with(this)
-                .load(mainDaydreamServiceViewModel.imageUrl)
-                .placeholder(R.drawable.earth)
-                .fallback(R.drawable.earth)
-                .animate(R.anim.abc_fade_in)
-                .listener(GlideRequestListener(wallImage))
-                .into(wallImage)
-
-        textTitle.text = mainDaydreamServiceViewModel.title
-        textDescription.text = mainDaydreamServiceViewModel.description
-    }
-
     override fun showLoadingError() {
         Toast.makeText(this, R.string.main_dreamservice_view_loading_error_message, Toast.LENGTH_SHORT).show()
     }
@@ -109,17 +103,12 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
         finish()
     }
 
-    private class GlideRequestListener(val wallImage: KenBurnsView) : RequestListener<String, GlideDrawable> {
-
-        override fun onResourceReady(resource: GlideDrawable?, model: String?, target: Target<GlideDrawable>?, isFromMemoryCache: Boolean, isFirstResource: Boolean): Boolean {
-            wallImage.resume()
-            return false
-        }
-
-        override fun onException(e: Exception?, model: String?, target: Target<GlideDrawable>?, isFirstResource: Boolean): Boolean {
-            wallImage.pause()
-            return false
-        }
-
+    override fun onApodImageReady() {
+        presenter.onApodImageReady()
     }
+
+    override fun onApodImageException() {
+        presenter.onApodImageException()
+    }
+
 }

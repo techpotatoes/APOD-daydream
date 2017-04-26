@@ -6,7 +6,7 @@ import com.lbbento.daydreamnasa.AppUtil
 import com.lbbento.daydreamnasa.data.api.apod.ApodDTO
 import com.lbbento.daydreamnasa.data.repo.ApodRepository
 import com.lbbento.daydreamnasa.di.AppSchedulers
-import com.lbbento.daydreamnasa.presenter.BaseServicePresenter
+import com.lbbento.daydreamnasa.ui.presenter.BaseServicePresenter
 import rx.Subscriber
 import javax.inject.Inject
 
@@ -29,7 +29,7 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
                     override fun onNext(apodDTO: ApodDTO) {
                         val mainDaydreamServiceViewModel = apodDataMapper.apodDTOToMainDaydreamViewModel(apodDTO)
                         mainDaydreamServiceViewModelState = mainDaydreamServiceViewModel
-                        mView.loadContent(mainDaydreamServiceViewModel)
+                        mView.loadImage(imageUrl = mainDaydreamServiceViewModel.imageUrl)
                     }
                     override fun onStart() {
                     }
@@ -53,8 +53,20 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
                 mView.openImplictIntentVideo(imageUri)
             }
         } catch (e: Exception) {
-            e.printStackTrace()
             mView.showError()
         }
+    }
+
+    fun onApodImageReady() {
+        setViewData(mainDaydreamServiceViewModelState)
+    }
+
+    fun onApodImageException() {
+        mView.showError()
+    }
+
+    private fun setViewData(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
+        mView.loadTitle(title = mainDaydreamServiceViewModel.title)
+        mView.loadDescription(description = mainDaydreamServiceViewModel.description)
     }
 }
