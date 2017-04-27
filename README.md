@@ -1,5 +1,6 @@
-<h1>NasaDayDream</h1>
 ![Travis-ci](https://travis-ci.org/skyguydaa7/daydream-nasa_apod.svg)
+
+<h1>NasaDayDream</h1>
 
 <br>
 <p> Try it out: <a href="http://google.play/tmp"> NasaDayDream on Google Play </a>
