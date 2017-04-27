@@ -80,7 +80,7 @@ def loadProperties(CoreBuildType buildtype,  String propertyFile) {
                     "${it.value.toString()}"
         }
     } else {
-        buildtype.buildConfigField "String", it.key.toString().toUpperCase().replace('.', '_'),
+        buildtype.buildConfigField "String", "NASA_API_KEY",
                 "\"Api key not defined\""
     }
 }
