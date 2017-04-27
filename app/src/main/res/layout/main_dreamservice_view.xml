@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/main_dreamserviceview_container"
+<RelativeLayout android:id="@+id/main_dreamserviceview_container"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <com.flaviofaria.kenburnsview.KenBurnsView
         android:id="@+id/main_dreamserviceview_wallImg"
@@ -37,14 +37,25 @@
                 android:id="@+id/main_dreamserviceview_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                 android:text="@string/main_dreamservice_view_title"/>
+
+            <TextView
+                android:id="@+id/main_dreamserviceview_videolinkhint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Small"
+                android:textSize="@dimen/main_dreamserviceview_videolinkhint_text_size"
+                android:text="@string/main_dreamservice_view_videolinkhint"
+                android:visibility="gone"
+                tools:visibility="visible"
+                />
 
             <TextView
                 android:id="@+id/main_dreamserviceview_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:maxLines="10"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                 android:text="@string/main_dreamservice_view_description"/>

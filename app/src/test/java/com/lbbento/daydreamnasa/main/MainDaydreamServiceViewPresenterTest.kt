@@ -91,6 +91,26 @@ class MainDaydreamServiceViewPresenterTest {
     }
 
     @Test
+    fun shouldShowVideoLinkIfMediaIsVideoOnApodImageReady() {
+        val mainDreamServiceViewModel = MainDaydreamServiceViewModel(imageUrl = "url", title = "title", description = "My description", originalUrl = "url", mediaType = "video")
+        mainDaydreamServiceViewPresenter.mainDaydreamServiceViewModelState = mainDreamServiceViewModel
+
+        mainDaydreamServiceViewPresenter.onApodImageReady()
+
+        verify(mainDaydreamServiceView).showVideoLink(true)
+    }
+
+    @Test
+    fun shouldNotShowVideoLinkIfMediaIsNotVideoOnApodImageReady() {
+        val mainDreamServiceViewModel = MainDaydreamServiceViewModel(imageUrl = "url", title = "title", description = "My description", originalUrl = "url", mediaType = "image")
+        mainDaydreamServiceViewPresenter.mainDaydreamServiceViewModelState = mainDreamServiceViewModel
+
+        mainDaydreamServiceViewPresenter.onApodImageReady()
+
+        verify(mainDaydreamServiceView).showVideoLink(false)
+    }
+
+    @Test
     fun shouldShowErrorOnApodImageException() {
         mainDaydreamServiceViewPresenter.onApodImageException()
 

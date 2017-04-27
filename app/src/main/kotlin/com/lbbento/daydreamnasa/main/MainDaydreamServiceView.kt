@@ -35,6 +35,9 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     @BindView(R.id.main_dreamserviceview_description)
     lateinit var textDescription : TextView
 
+    @BindView(R.id.main_dreamserviceview_videolinkhint)
+    lateinit var textVideoLink : TextView
+
     @BindView(R.id.main_dreamserviceview_container)
     lateinit var container : ViewGroup
 
@@ -79,6 +82,11 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     override fun loadDescription(description: String) {
         textDescription.text = description
     }
+
+    override fun showVideoLink(showHint: Boolean) {
+        textVideoLink.visibility = if (showHint) View.VISIBLE else View.GONE
+    }
+
     override fun showLoadingError() {
         Toast.makeText(this, R.string.main_dreamservice_view_loading_error_message, Toast.LENGTH_SHORT).show()
     }
@@ -110,5 +118,4 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     override fun onApodImageException() {
         presenter.onApodImageException()
     }
-
 }

@@ -12,7 +12,7 @@ open class ApodDataMapper @Inject constructor() {
     val APOD_MEDIA_TYPE_VIDEO = "video"
 
     open fun apodDTOToMainDaydreamViewModel(apodDTO: ApodDTO) : MainDaydreamServiceViewModel{
-        return MainDaydreamServiceViewModel(imageUrl = parseMedia(apodDTO.media_type, apodDTO.hdurl), title = apodDTO.title, description = apodDTO.explanation, originalUrl = apodDTO.hdurl)
+        return MainDaydreamServiceViewModel(imageUrl = parseMedia(apodDTO.media_type, apodDTO.hdurl), title = apodDTO.title, description = apodDTO.explanation, originalUrl = apodDTO.hdurl, mediaType = apodDTO.media_type)
     }
 
     private fun parseMedia(mediaType: String, hdurl: String): String {

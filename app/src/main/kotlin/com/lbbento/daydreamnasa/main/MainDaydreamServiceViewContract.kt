@@ -13,4 +13,5 @@ interface MainDaydreamServiceViewContract : BaseServiceViewContract, ApodImageLo
     fun openYoutubeVideo(videoUrl: String)
     fun openExplictIntentVideo(explictIntentUri: Uri?)
     fun openImplictIntentVideo(imageUri: Uri?)
+    fun showVideoLink(showHint: Boolean)
 }

@@ -68,5 +68,6 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
     private fun setViewData(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
         mView.loadTitle(title = mainDaydreamServiceViewModel.title)
         mView.loadDescription(description = mainDaydreamServiceViewModel.description)
+        mView.showVideoLink(showHint = mainDaydreamServiceViewModel.mediaType == "video")
     }
 }

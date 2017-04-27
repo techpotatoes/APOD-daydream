@@ -15,7 +15,7 @@ class ApodDataMapperTest {
     val MAIN_DREAM_VIEW_MODEL = MainDaydreamServiceViewModel(imageUrl = "url", description = "desc", title = "title", originalUrl = "url")
 
     val APOD_DTO_YOUTUBE = ApodDTO(date = Date(), explanation = "desc", hdurl = "https://www.youtube.com/watch?v=Q3VjaCy5gck", copyright = "", media_type = "video", service_version = "", title = "title", url = "")
-    val MAIN_DREAM_VIEW_MODEL_YOUTUBE = MainDaydreamServiceViewModel(imageUrl = "https://img.youtube.com/vi/Q3VjaCy5gck/hqdefault.jpg", description = "desc", title = "title", originalUrl = "https://www.youtube.com/watch?v=Q3VjaCy5gck")
+    val MAIN_DREAM_VIEW_MODEL_YOUTUBE = MainDaydreamServiceViewModel(imageUrl = "https://img.youtube.com/vi/Q3VjaCy5gck/hqdefault.jpg", description = "desc", title = "title", originalUrl = "https://www.youtube.com/watch?v=Q3VjaCy5gck", mediaType = "video")
 
 
     @Test
