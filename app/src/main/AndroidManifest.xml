@@ -21,14 +21,6 @@
         android:theme="@style/AppTheme"
         tools:ignore="MissingTvBanner">
 
-        <activity
-            android:name="com.lbbento.daydreamnasa.config.ConfigActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-            </intent-filter>
-        </activity>
-
         <service
             android:name="com.lbbento.daydreamnasa.main.MainDaydreamServiceView"
             android:exported="true"
