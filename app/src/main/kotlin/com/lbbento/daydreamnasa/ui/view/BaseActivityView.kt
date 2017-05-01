@@ -1,12 +1,14 @@
 package com.lbbento.daydreamnasa.ui.view
 
+import android.app.Activity
 import android.net.Uri
-import android.service.dreams.DreamService
+import android.os.Bundle
 
-abstract class BaseServiceView : DreamService(), BaseViewContract {
+abstract class BaseActivityView: Activity(), BaseViewContract {
 
-    override fun onCreate() {
-        super.onCreate()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setupInjection()
     }
 
@@ -15,4 +17,3 @@ abstract class BaseServiceView : DreamService(), BaseViewContract {
         return Uri.parse(uriToParse)
     }
 }
-

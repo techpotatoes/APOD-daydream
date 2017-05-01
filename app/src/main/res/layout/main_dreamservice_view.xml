@@ -78,7 +78,7 @@
                     android:layout_height="wrap_content"
                     android:format24Hour="@null"
                     android:format12Hour="k:mm"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:layout_alignParentEnd="true" />
 
                 <TextView

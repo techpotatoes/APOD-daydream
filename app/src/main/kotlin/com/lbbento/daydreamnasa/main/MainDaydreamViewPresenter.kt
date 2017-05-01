@@ -6,15 +6,17 @@ import com.lbbento.daydreamnasa.AppUtil
 import com.lbbento.daydreamnasa.data.api.apod.ApodDTO
 import com.lbbento.daydreamnasa.data.repo.ApodRepository
 import com.lbbento.daydreamnasa.di.AppSchedulers
-import com.lbbento.daydreamnasa.ui.presenter.BaseServicePresenter
+import com.lbbento.daydreamnasa.main.model.MainDaydreamDataMapper
+import com.lbbento.daydreamnasa.main.model.MainDaydreamViewModel
+import com.lbbento.daydreamnasa.ui.presenter.BasePresenter
 import rx.Subscriber
 import javax.inject.Inject
 
-class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: ApodRepository,
-                                                           val appSchedulers: AppSchedulers,
-                                                           val apodDataMapper: ApodDataMapper) : BaseServicePresenter<MainDaydreamServiceViewContract>() {
+class MainDaydreamViewPresenter @Inject constructor(val apodRepository: ApodRepository,
+                                                    val appSchedulers: AppSchedulers,
+                                                    val mainDaydreamDataMapper: MainDaydreamDataMapper) : BasePresenter<MainDaydreamViewContract>() {
 
-    var mainDaydreamServiceViewModelState: MainDaydreamServiceViewModel = MainDaydreamServiceViewModel()
+    var mainDaydreamViewModelState: MainDaydreamViewModel = MainDaydreamViewModel()
 
     fun onDreamingStarted() {
         apodRepository.getApod()
@@ -27,8 +29,8 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
                         mView.showLoadingError()
                     }
                     override fun onNext(apodDTO: ApodDTO) {
-                        val mainDaydreamServiceViewModel = apodDataMapper.apodDTOToMainDaydreamViewModel(apodDTO)
-                        mainDaydreamServiceViewModelState = mainDaydreamServiceViewModel
+                        val mainDaydreamServiceViewModel = mainDaydreamDataMapper.apodDTOToMainDaydreamViewModel(apodDTO)
+                        mainDaydreamViewModelState = mainDaydreamServiceViewModel
                         mView.loadImage(imageUrl = mainDaydreamServiceViewModel.imageUrl)
                     }
                     override fun onStart() {
@@ -36,9 +38,18 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
                 })
     }
 
-    fun onDispatchKeyEvent(event: KeyEvent?) {
-        if (event!!.action == KeyEvent.ACTION_UP && event.keyCode == KeyEvent.KEYCODE_DPAD_CENTER)
-            mView.openYoutubeVideo(mainDaydreamServiceViewModelState.originalUrl)
+    fun onKeyEvent(event: KeyEvent?) {
+        if (event!!.action == KeyEvent.ACTION_UP) {
+            if (event.keyCode == KeyEvent.KEYCODE_DPAD_CENTER) {
+                if (mainDaydreamViewModelState.mediaType == "video") mView.openYoutubeVideo(mainDaydreamViewModelState.originalUrl)
+            } else if (event.keyCode == KeyEvent.KEYCODE_BACK){
+                mView.finish()
+            }
+        }
+    }
+
+    fun onTouchEvent() {
+        mView.finish()
     }
 
     fun onOpenYoutubeVideo(videoUrl: String) {
@@ -58,16 +69,16 @@ class MainDaydreamServiceViewPresenter @Inject constructor(val apodRepository: A
     }
 
     fun onApodImageReady() {
-        setViewData(mainDaydreamServiceViewModelState)
+        setViewData(mainDaydreamViewModelState)
     }
 
     fun onApodImageException() {
         mView.showError()
     }
 
-    private fun setViewData(mainDaydreamServiceViewModel: MainDaydreamServiceViewModel) {
-        mView.loadTitle(title = mainDaydreamServiceViewModel.title)
-        mView.loadDescription(description = mainDaydreamServiceViewModel.description)
-        mView.showVideoLink(showHint = mainDaydreamServiceViewModel.mediaType == "video")
+    private fun setViewData(mainDaydreamViewModel: MainDaydreamViewModel) {
+        mView.loadTitle(title = mainDaydreamViewModel.title)
+        mView.loadDescription(description = mainDaydreamViewModel.description)
+        mView.showVideoLink(showHint = mainDaydreamViewModel.mediaType == "video")
     }
 }

@@ -1,4 +1,4 @@
-package com.lbbento.daydreamnasa.main
+package com.lbbento.daydreamnasa.main.model
 
 import com.lbbento.daydreamnasa.AppUtil
 import com.lbbento.daydreamnasa.data.api.apod.ApodDTO
@@ -8,11 +8,11 @@ import javax.inject.Singleton
 
 
 @Singleton
-open class ApodDataMapper @Inject constructor() {
+open class MainDaydreamDataMapper @Inject constructor() {
     val APOD_MEDIA_TYPE_VIDEO = "video"
 
-    open fun apodDTOToMainDaydreamViewModel(apodDTO: ApodDTO) : MainDaydreamServiceViewModel{
-        return MainDaydreamServiceViewModel(imageUrl = parseMedia(apodDTO.media_type, apodDTO.hdurl), title = apodDTO.title, description = apodDTO.explanation, originalUrl = apodDTO.hdurl, mediaType = apodDTO.media_type)
+    open fun apodDTOToMainDaydreamViewModel(apodDTO: ApodDTO) : MainDaydreamViewModel {
+        return MainDaydreamViewModel(imageUrl = parseMedia(apodDTO.media_type, apodDTO.hdurl), title = apodDTO.title, description = apodDTO.explanation, originalUrl = apodDTO.hdurl, mediaType = apodDTO.media_type)
     }
 
     private fun parseMedia(mediaType: String, hdurl: String): String {

@@ -1,9 +1,9 @@
 package com.lbbento.daydreamnasa.ui.presenter
 
-import com.lbbento.daydreamnasa.ui.view.BaseServiceViewContract
+import com.lbbento.daydreamnasa.ui.view.BaseViewContract
 
 
-abstract class BaseServicePresenter<V : BaseServiceViewContract> : BaseServicePresenterContract<V> {
+abstract class BasePresenter<V : BaseViewContract> : BasePresenterContract<V> {
 
     lateinit var mView : V
 

@@ -1,6 +1,6 @@
 package com.lbbento.daydreamnasa.ui.presenter
 
-import com.lbbento.daydreamnasa.ui.view.BaseServiceViewContract
+import com.lbbento.daydreamnasa.ui.view.BaseViewContract
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,8 +13,8 @@ class BaseServicePresenterTest {
 
     @Test
     fun onAttachedToWindowShouldSetViewAndCallOnSetContent() {
-        val mockedView = mock(BaseServiceViewContract::class.java)
-        val basePresenter = BaseServicePresenterTest()
+        val mockedView = mock(BaseViewContract::class.java)
+        val basePresenter = BasePresenterTest()
 
         basePresenter.onAttachedToWindow(mockedView)
 
@@ -22,5 +22,5 @@ class BaseServicePresenterTest {
         assertEquals(basePresenter.mView, mockedView)
     }
 
-    class BaseServicePresenterTest : BaseServicePresenter<BaseServiceViewContract>()
+    class BasePresenterTest : BasePresenter<BaseViewContract>()
 }

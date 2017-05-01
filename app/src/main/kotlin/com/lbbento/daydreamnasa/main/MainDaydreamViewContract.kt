@@ -2,9 +2,9 @@ package com.lbbento.daydreamnasa.main
 
 import android.net.Uri
 import com.lbbento.daydreamnasa.ui.glide.ApodImageLoaderListener
-import com.lbbento.daydreamnasa.ui.view.BaseServiceViewContract
+import com.lbbento.daydreamnasa.ui.view.BaseViewContract
 
-interface MainDaydreamServiceViewContract : BaseServiceViewContract, ApodImageLoaderListener {
+interface MainDaydreamViewContract : BaseViewContract, ApodImageLoaderListener {
     fun showLoadingError()
     fun showError()
     fun loadImage(imageUrl: String)
@@ -14,4 +14,5 @@ interface MainDaydreamServiceViewContract : BaseServiceViewContract, ApodImageLo
     fun openExplictIntentVideo(explictIntentUri: Uri?)
     fun openImplictIntentVideo(imageUri: Uri?)
     fun showVideoLink(showHint: Boolean)
+    fun finish()
 }

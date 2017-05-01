@@ -1,4 +1,4 @@
-package com.lbbento.daydreamnasa.main
+package com.lbbento.daydreamnasa.main.service
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
@@ -14,15 +14,17 @@ import butterknife.ButterKnife
 import com.flaviofaria.kenburnsview.KenBurnsView
 import com.lbbento.daydreamnasa.MainApplication
 import com.lbbento.daydreamnasa.daydreamnasa.R
+import com.lbbento.daydreamnasa.main.MainDaydreamViewContract
+import com.lbbento.daydreamnasa.main.MainDaydreamViewPresenter
 import com.lbbento.daydreamnasa.ui.glide.ApodImageLoader
 import com.lbbento.daydreamnasa.ui.view.BaseServiceView
 import javax.inject.Inject
 
 
-class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContract {
+class MainDaydreamServiceView : BaseServiceView(), MainDaydreamViewContract {
 
     @Inject
-    lateinit var presenter : MainDaydreamServiceViewPresenter
+    lateinit var presenter : MainDaydreamViewPresenter
 
     lateinit var apodImageLoader: ApodImageLoader
 
@@ -57,7 +59,7 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
     }
 
     override fun dispatchKeyEvent(event: KeyEvent?): Boolean {
-        presenter.onDispatchKeyEvent(event)
+        presenter.onKeyEvent(event)
         return super.dispatchKeyEvent(event)
     }
 
@@ -70,7 +72,7 @@ class MainDaydreamServiceView : BaseServiceView(), MainDaydreamServiceViewContra
         ButterKnife.bind(this, view)
         setContentView(view)
     }
-
+    
     override fun loadImage(imageUrl: String) {
         apodImageLoader.loadApodImage(wallImage, imageUrl)
     }
