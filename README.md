@@ -2,8 +2,7 @@
 
 <h1>APOD DayDream</h1>
 
-<br>
-<a href='https://play.google.com/store/apps/details?id=com.lbbento.daydreamnasa.daydreamnasa&ah=45zOYZwDuGg9Vz0ccHXOajoQ36k&hl=en-GB&rdid=com.lbbento.daydreamnasa.daydreamnasa&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/badge_new.png'/></a>
+<a href='https://play.google.com/store/apps/details?id=com.lbbento.daydreamnasa.daydreamnasa&ah=45zOYZwDuGg9Vz0ccHXOajoQ36k&hl=en-GB&rdid=com.lbbento.daydreamnasa.daydreamnasa&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src=''/></a>
 <br><br>
 
 <p> This is a DayDream backdrop to be used on any Android TV/Box. See screenshots bellow showing how to change your default DayDream App. </p>
