@@ -1,4 +1,4 @@
-![Travis-ci](https://travis-ci.org/skyguydaa7/daydream-nasa_apod.svg)
+![Travis-ci](https://travis-ci.org/skyguydaa7/APOD-daydream.svg)
 
 <h1>APOD DayDream</h1>
 
