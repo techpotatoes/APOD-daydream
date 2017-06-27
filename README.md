@@ -1,4 +1,4 @@
-![Travis-ci](https://travis-ci.org/skyguydaa7/APOD-daydream.svg)
+![Travis-ci](https://travis-ci.org/lbbento/APOD-daydream.svg)
 
 <h1>APOD DayDream</h1>
 
