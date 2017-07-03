@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                android:textColor="@android:color/white"
                 android:text="@string/main_dreamservice_view_title"/>
 
             <TextView
@@ -46,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textSize="@dimen/main_dreamserviceview_videolinkhint_text_size"
+                android:textColor="@android:color/white"
                 android:text="@string/main_dreamservice_view_videolinkhint"
                 android:visibility="gone"
                 tools:visibility="visible"
@@ -58,6 +60,7 @@
                 android:layout_marginTop="15dp"
                 android:maxLines="10"
                 android:textAppearance="@style/TextAppearance.AppCompat.Caption"
+                android:textColor="@android:color/white"
                 android:text="@string/main_dreamservice_view_description"/>
 
         </LinearLayout>
@@ -79,6 +82,7 @@
                     android:format24Hour="@null"
                     android:format12Hour="k:mm"
                     android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                    android:textColor="@android:color/white"
                     android:layout_alignParentEnd="true" />
 
                 <TextView
@@ -86,6 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentEnd="true"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="@android:color/white"
                     android:layout_below="@+id/main_dreamserviceview_time"
                     android:text="@string/main_dreamservice_view_by_nasa"/>
             </RelativeLayout>
