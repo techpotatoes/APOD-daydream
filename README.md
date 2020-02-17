@@ -24,7 +24,4 @@ Please, drop me an email if you have any suggestions, problems or feedback.  Fee
 
 <h3>Screenshots</h3>
 
-<img src="http://i64.tinypic.com/169gvv9.png" border="0" alt="Image and video hosting by TinyPic">
-<img src="http://i67.tinypic.com/k382n9.png" border="0" alt="Image and video hosting by TinyPic">
-<img src="http://i65.tinypic.com/21oriio.png" border="0" alt="Image and video hosting by TinyPic">
-<img src="http://i65.tinypic.com/2ik8gnb.png" border="0" alt="Image and video hosting by TinyPic">
+<img src="https://techpotatoes.com/wp-content/uploads/2020/02/app.png" border="0">
